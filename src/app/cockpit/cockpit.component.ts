@@ -12,7 +12,7 @@ export class CockpitComponent implements OnInit {
   // from outside of this component.
   // EventEmitter is a generic type that uses <>
   // Addedd an alias for blueprintCreated so that only the alias is visible to the outside.
-  newServerName = '';
+  /* newServerName = ''; */
   newServerContent = '';
 
   constructor() { }
@@ -20,16 +20,17 @@ export class CockpitComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddServer() {
+  onAddServer(nameInput: HTMLInputElement) {
+    
     this.serverCreated.emit({
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent
     });
   }
 
-  onAddBlueprint() {
+  onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent
     });
   }
