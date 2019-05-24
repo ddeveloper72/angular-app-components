@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -14,8 +14,8 @@ export class CockpitComponent implements OnInit {
   // Addedd an alias for blueprintCreated so that only the alias is visible to the outside.
   /* newServerName = ''; */
   /* newServerContent = ''; */
-  @ViewChild('serverContentInput') serverContentInput;
-  // pas the local reference or component type (not like a string)
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
+  // pass the local reference or component type (not like a string)
 
   constructor() { }
 
@@ -23,18 +23,18 @@ export class CockpitComponent implements OnInit {
   }
 
   onAddServer(nameInput: HTMLInputElement) {
-    console.log(this.serverContentInput)
-    // use console log to determing the type of element.
+    // console.log(this.serverContentInput)
+    // use console log to determine the type of element.
     this.serverCreated.emit({
-      //serverName: nameInput.value,
-      //serverContent: this.newServerContent
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 
   onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
-      //serverName: nameInput.value,
-      //serverContent: this.newServerContent
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 
