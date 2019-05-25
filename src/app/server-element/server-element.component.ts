@@ -15,9 +15,13 @@ export class ServerElementComponent implements OnInit {
   // we need the @Input() to make the element accessible from the outside.
   // using an alias helps us to specify the element targeted different from
   // the property name.
-  constructor() { }
+
+  constructor() {
+    console.log('constructor called');
+  }
 
   ngOnInit() {
+    console.log('ngOnInit called');
   }
 
 }
