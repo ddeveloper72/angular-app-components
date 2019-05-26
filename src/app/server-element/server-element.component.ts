@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -8,8 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
   // removes the component encapsulation so that css styleUrls
   // will be global, orriding local component encapsulation.
 })
-export class ServerElementComponent implements OnInit {
+export class ServerElementComponent implements OnInit, OnChanges {
   @Input('srvElement') element: {type: string, name: string, content: string};
+  @Input() name: string;
   // by default, all properties of components are only accessible
   // inside these components, not from outside.
   // we need the @Input() to make the element accessible from the outside.
@@ -17,11 +18,16 @@ export class ServerElementComponent implements OnInit {
   // the property name.
 
   constructor() {
-    console.log('constructor called');
+    console.log('constructor called!');
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(' ngOnChanges called!')
+    console.log(changes)
   }
 
   ngOnInit() {
-    console.log('ngOnInit called');
+    console.log('ngOnInit called!');
   }
 
 }
