@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked } from '@angular/core';
+import { Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked
+} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -8,7 +18,13 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterConte
   // removes the component encapsulation so that css styleUrls
   // will be global, overriding local component encapsulation.
 })
-export class ServerElementComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked {
+export class ServerElementComponent implements OnInit,
+OnChanges,
+DoCheck,
+AfterContentInit,
+AfterContentChecked,
+AfterViewInit,
+AfterViewChecked {
 // tslint:disable-next-line: no-input-rename
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
@@ -41,6 +57,14 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterContentChecked() {
     console.log('ngAfterContentChecked called!')
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit called')
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked called!')
   }
 
 }
