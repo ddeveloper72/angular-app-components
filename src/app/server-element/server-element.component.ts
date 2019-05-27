@@ -7,7 +7,8 @@ import { Component,
   AfterContentInit,
   AfterContentChecked,
   AfterViewInit,
-  AfterViewChecked
+  AfterViewChecked,
+  OnDestroy
 } from '@angular/core';
 
 @Component({
@@ -24,7 +25,8 @@ DoCheck,
 AfterContentInit,
 AfterContentChecked,
 AfterViewInit,
-AfterViewChecked {
+AfterViewChecked,
+OnDestroy {
 // tslint:disable-next-line: no-input-rename
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
@@ -65,6 +67,10 @@ AfterViewChecked {
 
   ngAfterViewChecked() {
     console.log('ngAfterViewChecked called!')
+  }
+
+  ngOnDestroy() {
+    console.log('ngOndestroy called!')
   }
 
 }
