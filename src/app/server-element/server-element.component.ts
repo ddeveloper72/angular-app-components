@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -8,7 +8,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
   // removes the component encapsulation so that css styleUrls
   // will be global, overriding local component encapsulation.
 })
-export class ServerElementComponent implements OnInit, OnChanges {
+export class ServerElementComponent implements OnInit, OnChanges, DoCheck {
 // tslint:disable-next-line: no-input-rename
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
@@ -29,6 +29,10 @@ export class ServerElementComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log('ngOnInit called!');
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck called!')
   }
 
 }
