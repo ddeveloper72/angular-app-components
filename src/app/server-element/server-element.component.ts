@@ -8,7 +8,10 @@ import { Component,
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  ContentChild
 } from '@angular/core';
 
 @Component({
@@ -30,6 +33,8 @@ OnDestroy {
 // tslint:disable-next-line: no-input-rename
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragraph: ElementRef;
   // by default, all properties of components are only accessible
   // inside these components, not from outside.
   // we need the @Input() to make the element accessible from the outside.
@@ -47,30 +52,34 @@ OnDestroy {
 
   ngOnInit() {
     console.log('ngOnInit called!');
+    console.log('This Content: ' + this.header.nativeElement.textContent);
+    console.log('Text content of paragraph: ' + this.paragraph.nativeElement.textContent);
   }
 
   ngDoCheck() {
-    console.log('ngDoCheck called!')
+    console.log('ngDoCheck called!');
   }
 
   ngAfterContentInit() {
-    console.log('ngAfterContentInit called')
+    console.log('ngAfterContentInit called');
   }
 
   ngAfterContentChecked() {
-    console.log('ngAfterContentChecked called!')
+    console.log('ngAfterContentChecked called!');
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit called')
+    console.log('ngAfterViewInit called');
+    console.log('This Content: ' + this.header.nativeElement.textContent);
+    console.log('Text content of paragraph: ' + this.paragraph.nativeElement.textContent);
   }
 
   ngAfterViewChecked() {
-    console.log('ngAfterViewChecked called!')
+    console.log('ngAfterViewChecked called!');
   }
 
   ngOnDestroy() {
-    console.log('ngOndestroy called!')
+    console.log('ngOndestroy called!');
   }
 
 }
