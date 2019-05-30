@@ -1,4 +1,4 @@
-# [Angular App Components](https://ddeveloper72.github.io/angular-app-components/)
+# Angular App Components
 ### (_An Introduction_)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
@@ -34,6 +34,39 @@ So we created two new apps, using the cli (without test files)
 `ng g c server-elements --spec false`
 
 The input elements from the app.component framework were then removed and placed in the cockpit html framework.  The associated methods used for the inputs and the buttons were also removed from the app.components.ts and relocated to the app.cockpit.ts file.
+
+### 2. Property & Event binding
+
+Property and event binding facilitate the passing of data between components. For example, the status for a disabled element can be set to be _true_ or _false_ by binding the boolean property; the data, to the element.  
+
+    <button class="btn btn-primary mb-2"
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer()">Add Server</button>
+
+In the example above, a method is used where the disabled true status of the button is removed after a time of 2 seconds.
+
+```javascript
+constructor() {
+  setTimeout(() => {
+    this.allowNewServer = true;
+      }, 2000);
+}
+```
+
+Another example is event binding.  A click listener on a button passes the status of the event to the method; the status being clicked or not clicked.  Where we are looking for data, from an input, we use an event emitter, **$event**.
+
+    <input
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)">
+    
+The method below in the typeScript file, "listens to the DOM", waiting for the data to be freed or passed to it, once the button has been clicked.
+
+```javascript
+onUpdateServerName(event: Event) {
+this.serverName = (event.target as HTMLInputElement).value;
+
+```
 
 ## Development server
 
