@@ -3,7 +3,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
-In this tutorial, I was introduced to *Components & Databinding*
+In this tutorial, I was introduced to *Components & Databinding*.
+
+Credit for the code in this tutorial is to []Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/), who presents Master Angular (Angular 2+, incl. Angular 8) and build awesome, reactive web apps with the successor of Angular.js
 
 1. Splitting Apps into Components
 2. A look at Property & Event binding
@@ -100,6 +102,45 @@ Instead of exposing literal property name, "element", one can assign an alias to
 
 ```
     [bob]="serverElement"
+    
+### 5. Binding to Custom Events
+
+In binding events, we pass data following an event so that that data can be acted on.  Remember that if a button is clicked, that is an event. If one has a parent component, we may want to receive data from a child component that it can be actioned.  `@` Decorators are used again.  But this isn't enough.  In this example, the property "serverCreated" is for an event which we will want to pass on tosomething else, so it has to be emitted by a _new value_, **EventEmitter** which again is part of the angular/core components.
+
+**Note**, that the EventEmmitter class needs to be a generic data type,  defined with the syntax `EventEmmiter<>()`. The data type is what we specified it to be in the app.component.ts, which is `{serverName: string, serverContent: string}` which came from `onServerAdded(serverData: {serverName: string, serverContent: string})`. The call to the eventEmitter constructor is concluded with parentheses, for storing the serverCreated object.
+
+To allow the EventEmitter object to be accessible from outside of the component, angualr/core has the `@Output` decorator.
+
+
+```javascript
+export class CockpitComponent implements OnInit {
+  @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+  
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  onAddServer(nameInput: HTMLInputElement) {
+  }
+
+```
+
+    <app-cockpit 
+    (serverCreated)="onServerAdded($event)">
+    </app-cockpit>
+  
+So, now we can emitt an object.  We can acto on it.
+
+```javascript
+onAddServer(nameInput: HTMLInputElement) {
+    this.serverCreated.emit({
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
+    });
+}
+```
+
 
 ## Development server
 
