@@ -22,7 +22,7 @@ In this tutorial, I was introduced to *Components & Databinding*
 
 In this tutorial, we were provided with a base application which was comprised of a typescript file which contained all the working methods for the application.  The html framework then included the components for accessing the methods and running the application.  
 
-Looking at the application, it was very vclearly fulfilling two functions in the same applicantion.  The tutorial lets one refined the application in a way which would make better use of the inner workings of Angular as well as allow one to reuse code when expanding the applcation.
+Looking at the application, it was very clearly fulfilling two functions in the same application.  The tutorial lets one refined the application in a way which would make better use of the inner workings of Angular as well as allow one to reuse code when expanding the application.
 
 The App existing app is in two sections,
 
@@ -67,6 +67,39 @@ onUpdateServerName(event: Event) {
 this.serverName = (event.target as HTMLInputElement).value;
 
 ```
+
+### 3. Binding to Custom Properties
+
+The key point to know/remember: "...by default, all properties of components are only accessible from inside its own component and not from another component".  This is essential, how ever there are circumstances where we create and exceptionto this default Angular behaviour.
+
+To expose an element to other components, we use `@`decorators which  are built in angular/core.  This gives explicit exposure of a specific property so a parent component can bind to it.  For example, `@Input` cna provied a component wiht access to the following element:
+
+#### server-element.component.ts
+
+```javascript
+export class ServerElementComponent implements OnInit {
+  @Input() element: {type: string, name: string, content: string};
+  
+  constructor() {}
+  
+  ngOnInit() {
+  
+  }
+}
+```
+#### app.component.html
+
+    [element]="serverElement"
+
+### 4. Assigning an _Alias_ to Custom Properties
+
+Instead of exposing literal property name, "element", one can assign an alias to the the property, like "bob"- hence the same property could be used by different components each with their own alias.  Note that the alias you choose should best describe what the property is that you are wanting to bind to.  To do this, the alias is used in the decorator function: 
+
+```javascript
+  @Input('bob') element: {type: string, name: string, content: string};
+
+```
+    [bob]="serverElement"
 
 ## Development server
 
