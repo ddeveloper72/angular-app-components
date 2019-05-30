@@ -105,7 +105,7 @@ Instead of exposing literal property name, "element", one can assign an alias to
     
 ### 5. Binding to Custom Events
 
-In binding events, we pass data following an event so that that data can be acted on.  Remember that if a button is clicked, that is an event. If one has a parent component, we may want to receive data from a child component that it can be actioned.  `@` Decorators are used again.  But this isn't enough.  In this example, the property "serverCreated" is for an event which we will want to pass on tosomething else, so it has to be emitted by a _new value_, **EventEmitter** which again is part of the angular/core components.
+In binding events, we pass data following an event so that that data can be acted on.  Remember that if a button is clicked, that is an event. If one has a parent component, we may want to receive data from a child component, so that it can be actioned.  `@` Decorators are used again.  But this isn't enough though.  In this example, the property "serverCreated" is for an event which we will want to pass on too something else, so it has to be emitted by a _new value_, the **EventEmitter** class, which again is part of the angular/core components.
 
 **Note**, that the EventEmmitter class needs to be a generic data type,  defined with the syntax `EventEmmiter<>()`. The data type is what we specified it to be in the app.component.ts, which is `{serverName: string, serverContent: string}` which came from `onServerAdded(serverData: {serverName: string, serverContent: string})`. The call to the eventEmitter constructor is concluded with parentheses, for storing the serverCreated object.
 
@@ -126,11 +126,13 @@ export class CockpitComponent implements OnInit {
 
 ```
 
+Here is where we listen for serverCreated.  Once the we get serverCreated, the onServerAdded method is called. The method then returns and object, which is the same object from the EventEmitter
+
     <app-cockpit 
     (serverCreated)="onServerAdded($event)">
     </app-cockpit>
   
-So, now we can emitt an object.  We can acto on it.
+So, now we can emitt an object.  We can act on it.
 
 ```javascript
 onAddServer(nameInput: HTMLInputElement) {
