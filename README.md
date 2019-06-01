@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 In this tutorial, I was introduced to *Components & Databinding*.
 
-Credit for the code in this tutorial is to []Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/), who presents Master Angular (Angular 2+, incl. Angular 8) and build awesome, reactive web apps with the successor of Angular.js
+Credit for the code in this tutorial is to [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/), who presents Master Angular (Angular 2+, incl. Angular 8) and build awesome, reactive web apps with the successor of Angular.js
 
 1. Splitting Apps into Components
 2. A look at Property & Event binding
